@@ -8,7 +8,7 @@
         /* This is the CSS */
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: #f4f4f4;
+            background-color: #000000; /* CHANGED to black */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -19,7 +19,7 @@
         }
         #container {
             text-align: center;
-            background-color: #ffffff;
+            background-color: #FF0000; /* CHANGED to red */
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
@@ -28,28 +28,34 @@
         }
         h1 {
             font-size: 1.8rem;
-            color: #333;
+            color: #FFFFFF; /* CHANGED to white */
         }
         p {
             font-size: 1rem;
-            color: #666;
+            color: #FFFFFF; /* CHANGED to white */
         }
         #nameInput {
             width: 100%;
             padding: 15px;
             font-size: 1.1rem;
-            border: 1px solid #ddd;
+            border: 1px solid #FFFFFF; /* CHANGED border to white */
             border-radius: 8px;
             box-sizing: border-box;
             margin-top: 20px;
+            color: #FFFFFF; /* CHANGED text to white */
+            background-color: #333333; /* ADDED dark background */
+        }
+        /* ADDED - changes placeholder text to light gray */
+        #nameInput::placeholder {
+            color: #BBBBBB;
         }
         #searchButton {
             width: 100%;
             padding: 15px;
             font-size: 1.1rem;
             font-weight: bold;
-            color: #fff;
-            background-color: #007bff; /* You can change this color */
+            color: #FFFFFF; /* CHANGED to white */
+            background-color: #000000; /* CHANGED to black */
             border: none;
             border-radius: 8px;
             margin-top: 15px;
@@ -57,10 +63,10 @@
         }
         #result {
             font-size: 1.2rem;
-            color: #333;
+            color: #FFFFFF; /* CHANGED to white */
             margin-top: 25px;
             font-weight: 500;
-            text-align: left; /* Aligns results nicely */
+            text-align: left; 
         }
     </style>
 </head>
@@ -80,8 +86,10 @@
     <script>
         // --- THIS IS THE JAVASCRIPT ---
 
-        // 1. Your full guest list is now embedded
+        // 1. Your full guest list
         const guestList = [
+            { name: "Mackinley Wilburn & Austin Gurski", table: "0" },
+            { name: "Kayli Semere & Steve Gurski", table: "Head Table" },
             { name: "Steve Moore & Ashley Heisler", table: "0" },
             { name: "Orianna Currie", table: "0" },
             { name: "Kianna Parisloff", table: "0" },
@@ -128,7 +136,7 @@
             { name: "Shane Wilson", table: "0" },
             { name: "Doug Kohli", table: "0" },
             { name: "Crystal & Toop (Jeff) Tom", table: "0" },
-            { name: "Jordan & Mitch Waldon", table: "0" },
+            { name: "Jordan & Mitch Kavanagh", table: "0" },
             { name: "Andrew Fuller", table: "0" },
             { name: "Jacob Geis & Angela Coku", table: "0" },
             { name: "Amy McAvena & Brad VanOs", table: "0" },
@@ -154,7 +162,7 @@
             { name: "Dillon Zimmer", table: "0" },
             { name: "Mama B (Brenda)", table: "0" },
             { name: "Gary Stettner", table: "0" },
-            { name: "Tanya Minaker", table: "0" },
+            { name:Read: "Tanya Minaker", table: "0" },
             { name: "Chris & Annmarie Stettner", table: "0" }
         ];
 
@@ -215,7 +223,8 @@
 
                 for (const match of matches) {
                     if (htmlResult !== '' && matches.length > 1) {
-                        htmlResult += '<hr style="border:0; border-top:1px solid #eee; margin: 15px 0;">';
+                        // ** CHANGED ** divider line to white
+                        htmlResult += '<hr style="border:0; border-top:1px solid #FFFFFF; margin: 15px 0;">';
                     }
                     htmlResult += `<strong>${match.name}</strong><br>Table <strong>${match.table}</strong>`;
                 }
