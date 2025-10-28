@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Find Your Table</title>
+    <title>Find Your Seat</title>
     <style>
         /* This is the CSS */
         body {
@@ -72,7 +72,7 @@
 <body>
 
     <div id="container">
-        <h1>Find Your Seat</h1>
+        <h1>Find Your Table</h1>
         <p>Please enter your first or last name to find your table.</p>
         
         <input type="text" id="nameInput" placeholder="Start typing your name...">
@@ -214,7 +214,7 @@
 
             // 5. Display all results
             if (matches.length === 0) {
-                resultDiv.textContent = "We couldn't find that name. Please check the spelling. If the issue persists, text HELP to +1 (306) 541-5488";
+                resultDiv.textContent = "We couldn't find that name. If the issue persists, text HELP to +1 (306) 541-5488";
             } else {
                 let htmlResult = '';
                 
