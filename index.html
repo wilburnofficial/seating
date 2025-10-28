@@ -8,7 +8,7 @@
         /* This is the CSS */
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: #000000; /* CHANGED to black */
+            background-color: #000000;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -19,7 +19,7 @@
         }
         #container {
             text-align: center;
-            background-color: #FF0000; /* CHANGED to red */
+            background-color: #FF0000;
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
@@ -28,24 +28,23 @@
         }
         h1 {
             font-size: 1.8rem;
-            color: #FFFFFF; /* CHANGED to white */
+            color: #FFFFFF;
         }
         p {
             font-size: 1rem;
-            color: #FFFFFF; /* CHANGED to white */
+            color: #FFFFFF;
         }
         #nameInput {
             width: 100%;
             padding: 15px;
             font-size: 1.1rem;
-            border: 1px solid #FFFFFF; /* CHANGED border to white */
+            border: 1px solid #FFFFFF;
             border-radius: 8px;
             box-sizing: border-box;
             margin-top: 20px;
-            color: #FFFFFF; /* CHANGED text to white */
-            background-color: #333333; /* ADDED dark background */
+            color: #FFFFFF;
+            background-color: #333333;
         }
-        /* ADDED - changes placeholder text to light gray */
         #nameInput::placeholder {
             color: #BBBBBB;
         }
@@ -54,8 +53,8 @@
             padding: 15px;
             font-size: 1.1rem;
             font-weight: bold;
-            color: #FFFFFF; /* CHANGED to white */
-            background-color: #000000; /* CHANGED to black */
+            color: #FFFFFF;
+            background-color: #000000;
             border: none;
             border-radius: 8px;
             margin-top: 15px;
@@ -63,7 +62,7 @@
         }
         #result {
             font-size: 1.2rem;
-            color: #FFFFFF; /* CHANGED to white */
+            color: #FFFFFF;
             margin-top: 25px;
             font-weight: 500;
             text-align: left; 
@@ -152,6 +151,7 @@
             { name: "Nolan & Helen Klapak", table: "0" },
             { name: "Shane Tophin", table: "0" },
             { name: "Spicy", table: "0" },
+            // ** FIXED LINE **
             { name: "Brando", table: "0" },
             { name: "Harrison McNichol", table: "0" },
             { name: "Shannon Highet", table: "0" },
@@ -161,8 +161,8 @@
             { name: "Dyllan Williamson", table: "0" },
             { name: "Dillon Zimmer", table: "0" },
             { name: "Mama B (Brenda)", table: "0" },
-            { name: "Gary Stettner", table:V: "0" },
-            // ** THIS IS THE FIXED LINE **
+            { name: "Gary Stettner", table: "0" },
+            // ** FIXED LINE **
             { name: "Tanya Minaker", table: "0" },
             { name: "Chris & Annmarie Stettner", table: "0" }
         ];
@@ -224,7 +224,6 @@
 
                 for (const match of matches) {
                     if (htmlResult !== '' && matches.length > 1) {
-                        // ** CHANGED ** divider line to white
                         htmlResult += '<hr style="border:0; border-top:1px solid #FFFFFF; margin: 15px 0;">';
                     }
                     htmlResult += `<strong>${match.name}</strong><br>Table <strong>${match.table}</strong>`;
