@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Your Seat</title>
+    <style>
+        /* This is the CSS */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        #container {
+            text-align: center;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            width: 100%;
+            max-width: 400px;
+        }
+        h1 {
+            font-size: 1.8rem;
+            color: #333;
+        }
+        p {
+            font-size: 1rem;
+            color: #666;
+        }
+        #nameInput {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-sizing: border-box;
+            margin-top: 20px;
+        }
+        #searchButton {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #fff;
+            background-color: #007bff; /* You can change this color */
+            border: none;
+            border-radius: 8px;
+            margin-top: 15px;
+            cursor: pointer;
+        }
+        #result {
+            font-size: 1.2rem;
+            color: #333;
+            margin-top: 25px;
+            font-weight: 500;
+            text-align: left; /* Aligns results nicely */
+        }
+    </style>
+</head>
+<body>
+
+    <div id="container">
+        <h1>Find Your Seat</h1>
+        <p>Please enter your first or last name to find your table.</p>
+        
+        <input type="text" id="nameInput" placeholder="Start typing your name...">
+        
+        <button id="searchButton">Find My Table</button>
+        
+        <div id="result"></div>
+    </div>
+
+    <script>
+        // --- THIS IS THE JAVASCRIPT ---
+
+        // 1. Your full guest list is now embedded
+        const guestList = [
+            { name: "Steve Moore & Ashley Heisler", table: "0" },
+            { name: "Orianna Currie", table: "0" },
+            { name: "Kianna Parisloff", table: "0" },
+            { name: "Cliff Rusconi & Darcy Demyen", table: "0" },
+            { name: "Cleo Phaneuf & Aiden Carter", table: "0" },
+            { name: "Libby Zachow", table: "0" },
+            { name: "Parker Campbell", table: "0" },
+            { name: "Taylor & Chloe Semere", table: "0" },
+            { name: "Mom & Dad", table: "0" },
+            { name: "Tanner Rishinko", table: "0" },
+            { name: "Kim & Dereck Braumberger", table: "0" },
+            { name: "Savannah & Rourke Wilson", table: "0" },
+            { name: "Shannon Fraser & Nick Ursulak", table: "0" },
+            { name: "Steph & Trevor MacDonald", table: "0" },
+            { name: "Cam Duperreault", table: "0" },
+            { name: "Jermey & Lisa Gamblin", table: "0" },
+            { name: "Kyle Morrissette", table: "0" },
+            { name: "Jamie Findlay & Chris Pociuk", table: "0" },
+            { name: "Will & Teresa Youngblut", table: "0" },
+            { name: "Koda Rudolph & Jay Young", table: "0" },
+            { name: "Rev. Deb Deb", table: "0" },
+            { name: "Jean & Fred Lowenberger", table: "0" },
+            { name: "Tracy Hesterman", table: "0" },
+            { name: "Melissa & Nate Komishin", table: "0" },
+            { name: "Lindsay Hardin", table: "0" },
+            { name: "Justin Walker", table: "0" },
+            { name: "Kirby & Ivy Walker", table: "0" },
+            { name: "Kim & Clint Walker", table: "0" },
+            { name: "Chanelle & Dallas Radons", table: "0" },
+            { name: "Stef Bida", table: "0" },
+            { name: "Lar Bear", table: "0" },
+            { name: "Dalton Hawkes", table: "0" },
+            { name: "Colton & Aimee Jones", table: "0" },
+            { name: "Cindi & Morris Schonhoffer", table: "0" },
+            { name: "Jordan & Eden MacDonald", table: "0" },
+            { name: "Jim & Terry Morrow", table: "0" },
+            { name: "Dave Morrow", table: "0" },
+            { name: "Bobbie Cherepuschak", table: "0" },
+            { name: "Dee & Don Cherepuschak", table: "0" },
+            { name: "Rick & June Morrow", table: "0" },
+            { name: "Grant Wilburn", table: "0" },
+            { name: "Gray Travis", table: "0" },
+            { name: "Ashley Cherniak & Shane Slater", table: "0" },
+            { name: "Shane Wilson", table: "0" },
+            { name: "Doug Kohli", table: "0" },
+            { name: "Crystal & Toop (Jeff) Tom", table: "0" },
+            { name: "Jordan & Mitch Waldon", table: "0" },
+            { name: "Andrew Fuller", table: "0" },
+            { name: "Jacob Geis & Angela Coku", table: "0" },
+            { name: "Amy McAvena & Brad VanOs", table: "0" },
+            { name: "Shelby Sureau & Troy Gaveronski", table: "0" },
+            { name: "Ryan Peyton", table: "0" },
+            { name: "Mariah & Evan Laframboise", table: "0" },
+            { name: "Leanna Smith", table: "0" },
+            { name: "Jordan Pratt", table: "0" },
+            { name: "Sarah Blazer", table: "0" },
+            { name: "Tyler", table: "0" },
+            { name: "Mike", table: "0" },
+            { name: "Ty Lekivetz", table: "0" },
+            { name: "Nolan & Helen Klapak", table: "0" },
+            { name: "Shane Tophin", table: "0" },
+            { name: "Spicy", table: "0" },
+            { name: "Brando", table: "0" },
+            { name: "Harrison McNichol", table: "0" },
+            { name: "Shannon Highet", table: "0" },
+            { name: "Jillissa Macfarlane", table: "0" },
+            { name: "Bernie & Collene Beaudry", table: "0" },
+            { name: "Roxi Minto", table: "0" },
+            { name: "Dyllan Williamson", table: "0" },
+            { name: "Dillon Zimmer", table: "0" },
+            { name: "Mama B (Brenda)", table: "0" },
+            { name: "Gary Stettner", table: "0" },
+            { name: "Tanya Minaker", table: "0" },
+            { name: "Chris & Annmarie Stettner", table: "0" }
+        ];
+
+        // 2. Get references to the HTML elements
+        const nameInput = document.getElementById('nameInput');
+        const resultDiv = document.getElementById('result');
+        const searchButton = document.getElementById('searchButton');
+        
+        // 3. Set up ALL event listeners
+        
+        // A) Live search (as user types)
+        nameInput.addEventListener('input', () => {
+            if (nameInput.value.trim().length >= 2) {
+                findTable();
+            } else {
+                resultDiv.innerHTML = ''; // Clear results if they backspace
+            }
+        });
+
+        // B) Button click
+        searchButton.addEventListener('click', findTable);
+
+        // C) "Enter" key press
+        nameInput.addEventListener('keyup', function(event) {
+            if (event.key === "Enter") {
+                findTable();
+            }
+        });
+        
+
+        // 4. This is the main search function
+        function findTable() {
+            const searchName = nameInput.value.trim().toLowerCase();
+            let matches = []; 
+            
+            if (searchName === "") {
+                resultDiv.innerHTML = 'Please enter a name.';
+                return;
+            }
+
+            // Loop through our loaded guest list
+            for (const guest of guestList) {
+                const guestName = guest.name.toLowerCase();
+                if (guestName.includes(searchName)) {
+                    matches.push(guest);
+                }
+            }
+
+            // 5. Display all results
+            if (matches.length === 0) {
+                resultDiv.textContent = "We couldn't find that name. Please check the spelling.";
+            } else {
+                let htmlResult = '';
+                
+                if (matches.length > 1) {
+                    htmlResult = `We found ${matches.length} matches:<br><br>`;
+                }
+
+                for (const match of matches) {
+                    if (htmlResult !== '' && matches.length > 1) {
+                        htmlResult += '<hr style="border:0; border-top:1px solid #eee; margin: 15px 0;">';
+                    }
+                    htmlResult += `<strong>${match.name}</strong><br>Table <strong>${match.table}</strong>`;
+                }
+                
+                resultDiv.innerHTML = htmlResult;
+            }
+        }
+    </script>
+</body>
+</html>
